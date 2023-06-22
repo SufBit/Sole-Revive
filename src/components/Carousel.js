@@ -11,8 +11,8 @@ function UncontrolledExample() {
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>First shoe name</h3>
+          <p>Our First shoe!</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -23,8 +23,8 @@ function UncontrolledExample() {
         />
 
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h3>Second shoe name</h3>
+          <p>Our Second shoe!</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -35,9 +35,9 @@ function UncontrolledExample() {
         />
 
         <Carousel.Caption>
-          <h3>Third slide label</h3>
+          <h3>Third shoe name</h3>
           <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          Our Third shoe!
           </p>
         </Carousel.Caption>
       </Carousel.Item>
