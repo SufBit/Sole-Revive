@@ -1,20 +1,23 @@
 import React from 'react';
 import NavigationBar from './components/NavigationBar';
+import Footer from './components/Footer';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UncontrolledExample from './components/Carousel';
-import Footer from './components/Footer';
-import ShoeCardContainer from './components/shoeCardContainer';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { Home } from './pages/Home';
 
 
 
 function App() {
   return (
-    <div className="App">
-      <NavigationBar />
-      <UncontrolledExample />
-      <ShoeCardContainer />
-      <Footer />
+    <div className = "App">
+      <Router>
+        <NavigationBar />
+        <Routes>
+          <Route path ='/' element = {<Home />}/>
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
