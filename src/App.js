@@ -6,6 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { Home } from './pages/Home';
 import { BuyPage }from './pages/BuyPage';
+import Sell from './pages/sell';
+
+
 
 
 
@@ -17,6 +20,7 @@ function App() {
         <Routes>
           <Route path ='/' element = {<Home />}/>
           <Route path ='/BuyPage' element = {<BuyPage />}/>
+          <Route path = '/sell' element = {<Sell />} />
         </Routes>
         <Footer />
       </Router>
