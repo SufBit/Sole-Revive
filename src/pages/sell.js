@@ -7,7 +7,6 @@ function Sell() {
   const [offer, setOffer] = useState('');
   const [image, setImage] = useState(null);
   const [condition, setCondition] = useState('');
-  const [gender, setGender] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -32,10 +31,6 @@ function Sell() {
     setCondition(event.target.value);
   };
 
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
-
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -52,7 +47,6 @@ function Sell() {
     console.log('Submitted offer:', offer);
     console.log('Submitted image:', image);
     console.log('Submitted condition:', condition);
-    console.log('Submitted gender:', gender);
     console.log('Submitted email:', email);
     console.log('Submitted phone:', phone);
   };
@@ -68,7 +62,15 @@ function Sell() {
         <br />
         <label>
           Size (US):
-          <input type="text" value={size} onChange={handleSizeChange} />
+          <select value={size} onChange={handleSizeChange}>
+            <option value="">Select size</option>
+            {[...Array(16)].map((_, index) => (
+              <option value={`Men ${index + 6}`} key={`men-${index + 6}`}>Men {index + 6}</option>
+            ))}
+            {[...Array(15)].map((_, index) => (
+              <option value={`Women ${index + 6}`} key={`women-${index + 6}`}>Women {index + 6}</option>
+            ))}
+          </select>
         </label>
         <br />
         <label>
@@ -89,15 +91,7 @@ function Sell() {
             <option value="Used - Excellent">Used - Excellent</option>
             <option value="Used - Good">Used - Good</option>
             <option value="Used - Fair">Used - Fair</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Gender:
-          <select value={gender} onChange={handleGenderChange}>
-            <option value="">Select gender</option>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
+            <option value="Used - Poor">Used - Poor</option>
           </select>
         </label>
         <br />
