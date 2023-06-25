@@ -16,7 +16,7 @@ function App() {
         <NavigationBar />
         <Routes>
           <Route path ='/' element = {<Home />}/>
-          <Route path ='/Buy' element = {<BuyPage />}/>
+          <Route path ='/BuyPage' element = {<BuyPage />}/>
         </Routes>
         <Footer />
       </Router>
