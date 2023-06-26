@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { Home } from './pages/Home';
 import { BuyPage }from './pages/BuyPage';
 import Sell from './pages/sell';
+import { ShoeDisplay } from './pages/ShoeDisplay';
 
 
 
@@ -18,9 +19,10 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path ='/' element = {<Home />}/>
-          <Route path ='/BuyPage' element = {<BuyPage />}/>
+          <Route path = '/' element = {<Home />} />
+          <Route path = '/BuyPage' element = {<BuyPage />} />
           <Route path = '/sell' element = {<Sell />} />
+          <Route path = '/ShoeDisplay' element = {<ShoeDisplay />} />
         </Routes>
         <Footer />
       </Router>
