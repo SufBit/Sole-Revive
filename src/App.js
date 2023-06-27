@@ -20,12 +20,13 @@ function App() {
       <Router>
         <NavigationBar />
         <Routes>
-          <Route path ='/' element = {<Home />}/>
-          <Route path ='/BuyPage' element = {<BuyPage />}/>
+          <Route path = '/' element = {<Home />} />
+          <Route path = '/BuyPage' element = {<BuyPage />} />
           <Route path = '/sell' element = {<Sell />} />
           <Route path = '/cart' element = {<Cart />} />
           <Route path = '/signup' element = {<SignUp />} />
           <Route path = '/login' element = {<LogIn />} />
+          <Route path = '/ShoeDisplay' element = {<ShoeDisplay />} />
         </Routes>
         <Footer />
       </Router>
