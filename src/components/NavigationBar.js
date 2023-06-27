@@ -14,7 +14,15 @@ const NavigationBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
   <Container>
-    <Navbar.Brand as={Link} to="/" className="brand-text">SoleRevive</Navbar.Brand>
+    <Navbar.Brand as={Link} to="/" className="brand-text"> <div className="brand-container">
+            <img
+              src={process.env.PUBLIC_URL + '/favicon.ico'}
+              alt="Favicon"
+              className="favicon"
+            /> {/* Add this line */}
+            SoleRevive
+          </div>
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
