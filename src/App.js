@@ -10,6 +10,7 @@ import Sell from './pages/sell';
 import {Cart} from './pages/cart'
 import SignUp from './pages/account/signup'
 import LogIn from './pages/account/login'
+import {ShoeDisplay} from './pages/ShoeDisplay'
 
 
 
