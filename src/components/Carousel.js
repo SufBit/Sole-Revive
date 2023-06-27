@@ -14,7 +14,7 @@ function UncontrolledExample() {
           className="d-block w-100"
           src="images/shoe1.jpg"
           alt="First slide"
-          style={{ height: '1500px', objectFit: 'cover' }}
+          style={{ height: '875px', objectFit: 'cover' }}
         />
         <Carousel.Caption>
           <h3>First shoe name</h3>
@@ -26,7 +26,7 @@ function UncontrolledExample() {
           className="d-block w-100"
           src="images/shoe2.jpg"
           alt="Second slide"
-          style={{ height: '1500px', objectFit: 'cover' }}
+          style={{ height: '875px', objectFit: 'cover' }}
         />
         <Carousel.Caption>
           <h3>Second shoe name</h3>
@@ -38,7 +38,7 @@ function UncontrolledExample() {
           className="d-block w-100"
           src="images/shoe3.jpg"
           alt="Third slide"
-          style={{ height: '1500px', objectFit: 'cover' }}
+          style={{ height: '875px', objectFit: 'cover' }}
         />
         <Carousel.Caption>
           <h3>Third shoe name</h3>
