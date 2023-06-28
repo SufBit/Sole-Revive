@@ -14,14 +14,22 @@ const NavigationBar = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
   <Container>
-    <Navbar.Brand as={Link} to="/" className="brand-text">SoleRevive</Navbar.Brand>
+    <Navbar.Brand as={Link} to="/" className="brand-text"> <div className="brand-container">
+            <img
+              src={process.env.PUBLIC_URL + '/favicon.ico'}
+              alt="Favicon"
+              className="favicon"
+            /> {/* Add this line */}
+            SoleRevive
+          </div>
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
-        <Nav.Link as={Link} to="/" className="mr-3">Home</Nav.Link>
         <Nav.Link as={Link} to="/BuyPage" className="mr-3">Buy</Nav.Link>
+        <Nav.Link as={Link} to="/sell" className="mr-3">Sell</Nav.Link>
         <NavDropdown title="Dropdown" id="basic-nav-dropdown" className="mr-3">
-          <NavDropdown.Item as={Link} to="/sell">Sell</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/review">Reviews</NavDropdown.Item>
           <NavDropdown.Item as={Link} to="/about">About Us</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.3"></NavDropdown.Item>
           <NavDropdown.Divider />

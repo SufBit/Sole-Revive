@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './cart.css'; // Import the CSS file for Sell component
 
-export const cart = () => {
+export const Cart = () => {
   return (
-    <div>cart</div>
+    <div>
+        
+    </div>
   )
-}
+};
