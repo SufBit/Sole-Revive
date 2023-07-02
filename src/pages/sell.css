@@ -1,51 +1,58 @@
 .sell-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  .sell-heading {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .sell-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .sell-form label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  
-  .sell-form input,
-  .sell-form select {
-    padding: 5px;
-    width: 200px;
-    font-size: 14px;
-  }
-  
-  .sell-button {
-    padding: 12px 24px;
-    font-size: 16px;
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .sell-button:hover {
-    background-color: darkgreen;
-  }
-  
-  .sell-footer {
-    margin-top: 20px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box; /* Added box-sizing to include padding in width calculation */
+}
+
+.sell-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sell-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%; /* Added width to ensure form doesn't overflow */
+  max-width: 400px; /* Added max-width to limit form size on larger screens */
+}
+
+.sell-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sell-form input,
+.sell-form select {
+  padding: 5px;
+  width: 100%; /* Changed width to fill the parent container */
+  font-size: 14px;
+  box-sizing: border-box; /* Added box-sizing to include padding in width */
+}
+
+.sell-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: green;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%; /* Changed width to fill the parent container */
+}
+
+.sell-button:hover {
+  background-color: darkgreen;
+}
+
+.sell-footer {
+  margin-top: 20px;
+  text-align: center;
+}

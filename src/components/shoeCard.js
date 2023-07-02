@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const shoeCard = ({ shoeName, price, link }) => {
   return (
@@ -11,7 +12,7 @@ const shoeCard = ({ shoeName, price, link }) => {
       <Card.Text>
         Price: {price}
       </Card.Text>
-      <Button variant="primary" href={link}>Go somewhere</Button>
+      <Button  as = {Link} to = "/ShoeDisplay" variant="primary" href={link} >View</Button>
     </Card.Body>
   </Card>
   );

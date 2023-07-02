@@ -2,12 +2,10 @@ import ShoeCard from '../components/shoeCard';
 import Button from 'react-bootstrap/Button';
 import Dropdown from 'react-bootstrap/Dropdown';
 import React from "react";
-
-
 export const BuyPage = () => {
     return (
 
-      <div className="BuyPage" stylse={{ backgroundColor: 'white' }}>
+      <div className="BuyPage" style={{ backgroundColor: 'white' }}>
       <div style={{ textAlign: 'center', backgroundColor: 'white' }}>
         <div>
           <h2 style={{ marginBottom: '2.5rem', marginTop: '3.5rem' }}>Shop All Shoes</h2>
@@ -16,7 +14,6 @@ export const BuyPage = () => {
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Filter
             </Dropdown.Toggle>
-
             <Dropdown.Menu>
               <Dropdown.Item href="#/action-1">Style</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Price</Dropdown.Item>
@@ -79,6 +76,9 @@ export const BuyPage = () => {
           <Button variant="primary" size="lg">See More</Button>
         </div>
         <div style={{ marginBottom: '40px' }}></div> {/* Empty div for additional spacing */}
+      </div>
+      <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+        {/* Footer */}
       </div>
     </div>
      

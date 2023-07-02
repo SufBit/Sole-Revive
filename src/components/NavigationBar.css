@@ -6,3 +6,14 @@
     font-weight: bold; /* Adjust the font weight as needed */
     
   }
+
+  .brand-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .favicon {
+    width: 20px;
+    margin-right: 5px;
+    margin-top: -2px; /* Adjust this value to move the favicon up or down */
+  }
