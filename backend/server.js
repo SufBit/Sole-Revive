@@ -3,6 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const signupRouter = require('./routes/signupRoutes');
 const loginRouter = require('./routes/loginRoutes');
+const sneakerRoutes = require('./routes/sneakerRoutes');
 
 const app = express();
 const cors = require('cors')
@@ -32,6 +33,9 @@ app.use('/post/signup', signupRouter);
 
 // login route
 app.use('/post/login', loginRouter);
+
+//Sneaker database
+app.use('/api', sneakerRoutes);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
