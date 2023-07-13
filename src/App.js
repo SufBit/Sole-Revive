@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import { Home } from './pages/Home';
 import { BuyPage } from './pages/BuyPage';
 import Sell from './pages/sell';
-import { Cart } from './pages/cart'
+import Cart  from './pages/cart'
 import SignUp from './pages/account/signup'
 import LogIn from './pages/account/login'
 import { ShoeDisplay } from './pages/ShoeDisplay'
@@ -35,9 +35,12 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/ShoeDisplay' element={<ShoeDisplay />} />
+          <Route path='/BuyPage' element={<BuyPage />} />
+          <Route path='/sell' element={<Sell />} />
+          <Route path='/cart' element={<Cart />} />
           {isLoggedIn ? (
             <>
-              <Route path='/BuyPage' element={<BuyPage />} />
+              
               <Route path='/sell' element={<Sell />} />
               <Route path='/cart' element={<Cart />} />
             </>
