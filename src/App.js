@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     // Make a request to check if the user is logged in
@@ -29,15 +29,13 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavigationBar />
+        <NavigationBar isLoggedIn={isLoggedIn}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/ShoeDisplay' element={<ShoeDisplay />} />
           <Route path='/BuyPage' element={<BuyPage />} />
-          <Route path='/sell' element={<Sell />} />
-          <Route path='/cart' element={<Cart />} />
           {isLoggedIn ? (
             <>
               
