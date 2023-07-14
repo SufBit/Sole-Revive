@@ -9,6 +9,7 @@ import SignUp from './pages/account/signup'
 import LogIn from './pages/account/login'
 import {ShoeDisplay} from './pages/ShoeDisplay'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {WishList}  from './pages/WishList'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -16,7 +17,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
     // Make a request to check if the user is logged in
@@ -37,6 +38,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn />} />
           <Route path='/ShoeDisplay' element={<ShoeDisplay />} />
           <Route path='/BuyPage' element={<BuyPage />} />
