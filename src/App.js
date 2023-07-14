@@ -10,6 +10,7 @@ import {Cart} from './pages/cart'
 import SignUp from './pages/account/signup'
 import LogIn from './pages/account/login'
 import {ShoeDisplay} from './pages/ShoeDisplay'
+import ReviewPage from './pages/Reviews';
 
 
 
@@ -27,6 +28,7 @@ function App() {
           <Route path = '/signup' element = {<SignUp />} />
           <Route path = '/login' element = {<LogIn />} />
           <Route path = '/ShoeDisplay' element = {<ShoeDisplay />} />
+          <Route path = '/review' element = {<ReviewPage />} />
         </Routes>
         <Footer />
       </Router>

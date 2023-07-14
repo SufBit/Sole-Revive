@@ -1,5 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel';
-
+import StarRating from './StarRating';
 
 function UncontrolledExample() {
   const carouselArrowStyle = {
@@ -16,9 +16,9 @@ function UncontrolledExample() {
           alt="First slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
-        <Carousel.Caption>
-          <h3>First shoe name</h3>
-          <p>Our First shoe!</p>
+        <Carousel.Caption style = {{color: 'black'}}>
+          <h3><StarRating/></h3>
+          <p>"A shining star in the footwear industry!" - Times Square</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -28,9 +28,10 @@ function UncontrolledExample() {
           alt="Second slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
-        <Carousel.Caption>
-          <h3>Second shoe name</h3>
-          <p>Our Second shoe!</p>
+        <Carousel.Caption style = {{color: 'black'}}>
+          <h3><StarRating/></h3>
+          <p>"A top-rated shoe seller with a passion for restoring footwear to its former glory,
+             setting the standard for excellence in refurbishment." - Yelp</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -40,9 +41,9 @@ function UncontrolledExample() {
           alt="Third slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
-        <Carousel.Caption>
-          <h3>Third shoe name</h3>
-          <p>Our Third shoe!</p>
+        <Carousel.Caption style = {{color: 'black'}}>
+          <h3><StarRating/></h3>
+          <p>"A top-notch shoe shopping destination, delivering 5-star style and exceptional service!" - Consumer Reports</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
