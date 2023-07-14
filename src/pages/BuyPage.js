@@ -1,6 +1,5 @@
 import ShoeCard from '../components/shoeCard';
 import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
 import React, { useState } from 'react';
 import Filter from '../components/Filter';
 
@@ -9,13 +8,12 @@ export const BuyPage = () => {
   const handleFilter = (brand, price, size) => {
     // Update state or perform filtering operations based on the filter values
   };
-    return (
-
-      <div className="BuyPage" style={{ backgroundColor: 'white' }}>
+  
   const [showMore, setShowMore] = useState(false);
 
   const handleSeeMore = () => {
     setShowMore(true);
+
   };
 
   return (
@@ -82,5 +80,5 @@ export const BuyPage = () => {
 {/ Footer */}
 </div>
 </div>
-);
+)};
 
