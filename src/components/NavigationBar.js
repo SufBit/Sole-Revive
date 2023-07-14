@@ -9,8 +9,10 @@ import FormControl from 'react-bootstrap/FormControl';
 import { FaShoppingCart } from 'react-icons/fa'; 
 import './NavigationBar.css';
 import { Link } from "react-router-dom"
+import UserDropdown from './UserDropdown';
 
-const NavigationBar = () => {
+
+const NavigationBar = ({ isLoggedIn }) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
   <Container>
@@ -43,13 +45,26 @@ const NavigationBar = () => {
             <Button variant="outline-success">Search</Button>
           </Form>
         </div>
-        <div className="d-flex align-items-center"> {/* Add margin to the left for the cart button */}
-          <Link to="/login" className="btn btn-success mr-2">Log In</Link>
-          <Link to="/signup" className="btn btn-primary mr-2">Sign Up</Link>
-          <Link to="/cart" className="btn btn-link cart-button">
-            <FaShoppingCart />
-          </Link>
-        </div>
+        <div className="d-flex align-items-center">
+              <div className="mr-2">
+                {!isLoggedIn && (
+                  <Link to="/login" className="btn btn-success">
+                    Log In
+                  </Link>
+                )}
+              </div>
+              <div className="mr-2">
+                {!isLoggedIn && (
+                  <Link to="/signup" className="btn btn-primary">
+                    Sign Up
+                  </Link>
+                )}
+              </div>
+              {isLoggedIn && <UserDropdown />}
+              <Link to="/cart" className="btn btn-link cart-button">
+                <FaShoppingCart />
+              </Link>
+            </div>
       </div>
     </Navbar.Collapse>
   </Container>
