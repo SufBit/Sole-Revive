@@ -82,5 +82,5 @@ export const BuyPage = () => {
 {/ Footer */}
 </div>
 </div>
-)};
+);
 
