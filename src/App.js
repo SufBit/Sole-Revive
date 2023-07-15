@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Home } from './pages/Home';
-import { BuyPage } from './pages/BuyPage';
+import BuyPage  from './pages/BuyPage';
 import Sell from './pages/sell';
 import Cart  from './pages/cart'
 import SignUp from './pages/account/signup'

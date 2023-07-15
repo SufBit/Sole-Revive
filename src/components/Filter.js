@@ -7,6 +7,7 @@ const Filter = ({ handleFilter }) => {
 
   const brands = ['Adidas', 'Nike', 'Puma'];
   const priceRanges = [
+    { label: 'View All', value: '' },
     { label: '$0 - $50', value: '0-50' },
     { label: '$50 - $100', value: '50-100' },
     { label: '$100 - $150', value: '100-150' },
@@ -26,8 +27,9 @@ const Filter = ({ handleFilter }) => {
 
   const handlePriceChange = (event) => {
     const priceRange = event.target.value;
-    setSelectedPriceRange(priceRange);
+    setSelectedPriceRange(selectedPriceRange === priceRange ? '' : priceRange === selectedPriceRange ? '' : priceRange);
   };
+  
 
   const handleSizeChange = (event) => {
     const size = event.target.value;
