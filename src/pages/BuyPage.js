@@ -65,7 +65,7 @@ const BuyPage = () => {
             <Filter handleFilter={handleFilter} />
           </div>
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '100px', margin: '60px' }}>
+        <div style={{ display: 'flex',justifyContent: 'center', alignItems: 'center',  flexWrap: 'wrap', gap: '100px', margin: '60px' }}>
           {filteredShoeData.slice(0, visibleItems).map((shoe) => (
             <ShoeCard key={shoe.id} shoe={shoe} />
           

@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const signupRouter = require('./routes/signupRoutes');
 const loginRouter = require('./routes/loginRoutes');
 const sneakerRoutes = require('./routes/SneakerRoutestemp');
+const { getCartItems } = require('./cartArray');
 
 const app = express();
 const cors = require('cors')
@@ -36,6 +37,13 @@ app.use('/post/login', loginRouter);
 
 //Sneaker database
 app.use('/api', sneakerRoutes);
+
+//cart
+app.get('/cart', (req, res) => {
+    const cartItems = getCartItems();
+    res.status(200).json(cartItems);
+  });
+  
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

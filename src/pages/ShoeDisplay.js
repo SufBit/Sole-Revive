@@ -2,9 +2,10 @@ import Figure from 'react-bootstrap/Figure';
 import { Accordion } from 'react-bootstrap';
 import { Button, ButtonGroup} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 
-export const ShoeDisplay = () => {
+export const ShoeDisplay = ({addToCart}) => {
 
   const [selectedShoe, setSelectedShoe] = useState(null);
   const { id } = useParams();
@@ -23,9 +24,36 @@ export const ShoeDisplay = () => {
     fetchShoeDetails();
   }, [id]);
 
+  useEffect(() => {
+    toast.configure();
+  }, []);
+
   if (!selectedShoe) {
     return <div>Loading...</div>;
   }
+
+  const handleAddToCart = async () => {
+    if (selectedShoe) {
+      try {
+        const response = await fetch(`http://localhost:3001/api/sneakers/${selectedShoe.id}/cart`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(selectedShoe),
+        });
+        if (response.ok) {
+          // Item added to cart successfully
+          toast.success('Item added to cart', { autoClose: 2000 });
+        } else {
+          console.error('Error adding item to cart');
+        }
+      } catch (error) {
+        console.error('Error adding item to cart:', error);
+      }
+    }
+  };
+
 
 return (
     <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -48,7 +76,7 @@ return (
       <div>
         
       <ButtonGroup className="mt-2" style = {{padding: '2rem'}}>
-        <Button variant="primary">Add to cart</Button>
+        <Button variant="primary" onClick={handleAddToCart}>Add to cart</Button>
         <Button variant="secondary">Add to wishlist</Button>
       </ButtonGroup>
       <Accordion style = {{marginTop: '3rem'}}>
@@ -72,9 +100,11 @@ return (
           width={684}
           height={720}
           alt="171x180"
+
           src={selectedShoe.image}
         />
       </Figure>
+      <ToastContainer position="top-center" />
     </div>
   );
   

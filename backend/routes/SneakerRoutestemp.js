@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const sneakerData = require('../sneakerData');
+const { addToCart, removeFromCart } = require('../cartArray');
 
 router.get('/sneakers', (req, res) => {
   const { brand, price, size } = req.query;
@@ -41,3 +42,27 @@ router.get('/sneakers/:id', (req, res) => {
 });
 
 module.exports = router;
+
+
+router.post('/sneakers/:id/cart', (req, res) => {
+  const { id } = req.params;
+  const shoe = sneakerData.find((shoe) => shoe.id === parseInt(id));
+
+  if (shoe) {
+    // Add the shoe to the cart
+    addToCart(shoe);
+
+    res.status(201).json({ message: 'Item added to cart successfully' });
+  } else {
+    res.status(404).json({ message: 'Shoe not found' });
+  }
+});
+
+router.delete('/sneakers/:id/cart', (req, res) => {
+  const { id } = req.params;
+
+  // Remove the sneaker from the cart
+  removeFromCart(id);
+
+  res.status(200).json({ message: 'Item removed from cart successfully' });
+});

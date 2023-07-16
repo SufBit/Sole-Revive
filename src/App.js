@@ -18,6 +18,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
+
 
   useEffect(() => {
     // Make a request to check if the user is logged in
@@ -40,14 +42,14 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path="/shoes/:id" element={<ShoeDisplay />} />
+          <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />
           {isLoggedIn ? (
             <>
               
               <Route path='/sell' element={<Sell />} />
-              <Route path='/cart' element={<Cart />} />
+              <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
             </>
           ) : (
             <Route path='/*' element={<Navigate to="/login" replace={isLoggedIn} />} />

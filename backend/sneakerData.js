@@ -14,7 +14,7 @@ const sneakerData = [
       id: 2,
       name: 'Adidas Yeezy Boost 350',
       brand: 'Adidas',
-      image: 'https://example.com/adidas_yeezy_boost_350.jpg',
+      image: '/images/yeezyBoost.webp',
       price: 220,
       size: 7,
       stockXprice: 350,
