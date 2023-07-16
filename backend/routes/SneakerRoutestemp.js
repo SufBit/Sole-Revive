@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sneakerData = require('../sneakerData');
 const { addToCart, removeFromCart } = require('../cartArray');
+const itemController = require('../sellArray');
 
 router.get('/sneakers', (req, res) => {
   const { brand, price, size } = req.query;
@@ -41,8 +42,6 @@ router.get('/sneakers/:id', (req, res) => {
   }
 });
 
-module.exports = router;
-
 
 router.post('/sneakers/:id/cart', (req, res) => {
   const { id } = req.params;
@@ -66,3 +65,22 @@ router.delete('/sneakers/:id/cart', (req, res) => {
 
   res.status(200).json({ message: 'Item removed from cart successfully' });
 });
+
+router.post('/sell', (req, res) => {
+  const { name, price, condition, image } = req.body;
+
+  // Add the item using the addItem function from itemController
+  itemController.addItem(name, price, condition, image);
+
+  res.json({ message: 'Item added successfully' });
+});
+
+// Example route that fetches all items
+router.get('/sell/items', (req, res) => {
+  // Get all items using the getAllItems function from itemController
+  const items = itemController.getAllItems();
+
+  res.json(items);
+});
+
+module.exports = router;

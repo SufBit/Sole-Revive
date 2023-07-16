@@ -5,6 +5,7 @@ const signupRouter = require('./routes/signupRoutes');
 const loginRouter = require('./routes/loginRoutes');
 const sneakerRoutes = require('./routes/SneakerRoutestemp');
 const { getCartItems } = require('./cartArray');
+const suggestionRoutes = require('./routes/suggestRoutes');
 
 const app = express();
 const cors = require('cors')
@@ -38,11 +39,16 @@ app.use('/post/login', loginRouter);
 //Sneaker database
 app.use('/api', sneakerRoutes);
 
+//suggestion routes
+app.use('/api/suggestions', suggestionRoutes);
+
 //cart
 app.get('/cart', (req, res) => {
     const cartItems = getCartItems();
     res.status(200).json(cartItems);
   });
+
+
   
 
 app.listen(port, () => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './sell.css'; // Import the CSS file for Sell component
 
+
 function Sell() {
   const [shoe, setShoe] = useState('');
   const [size, setSize] = useState('');
@@ -9,9 +10,26 @@ function Sell() {
   const [condition, setCondition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleShoeChange = (event) => {
-    setShoe(event.target.value);
+    const { value } = event.target;
+    setShoe(value);
+
+    // Fetch the suggestions from the backend API
+    fetch(`http://localhost:3001/api/suggestions?suggestion=${value}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setSuggestions(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching suggestions:', error);
+      });
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setShoe(suggestion);
+    setSuggestions([]); // Clear suggestions
   };
 
   const handleSizeChange = (event) => {
@@ -57,7 +75,20 @@ function Sell() {
       <form onSubmit={handleSubmit} className="sell-form">
         <label>
           Shoe:
-          <input type="text" value={shoe} onChange={handleShoeChange} />
+          <input type="text" className="form-control" id="shoeInput" value={shoe} onChange={handleShoeChange} />
+          {suggestions.length > 0 && (
+            <ul className="list-group mt-2">
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion}
+                  className="list-group-item suggestion-item"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </label>
         <br />
         <label>
