@@ -40,7 +40,8 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path='/ShoeDisplay' element={<ShoeDisplay />} />
+          <Route path="/shoes/:id" element={<ShoeDisplay />} />
+          {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />
           {isLoggedIn ? (
             <>

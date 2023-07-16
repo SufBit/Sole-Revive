@@ -11,7 +11,7 @@ const BuyPage = () => {
   
   const [shoeData, setShoeData] = useState([]);
   const [filteredShoeData, setFilteredShoeData] = useState([]);
-  const [visibleItems, setVisibleItems] = useState(6);
+  const [visibleItems, setVisibleItems] = useState(8);
 
   useEffect(() => {
     const fetchShoeData = async () => {
@@ -52,7 +52,7 @@ const BuyPage = () => {
   
 
   const handleSeeMore = () => {
-    setVisibleItems((prevVisibleItems) => prevVisibleItems + 6);
+    setVisibleItems((prevVisibleItems) => prevVisibleItems + 4);
   };
 
   return (
@@ -67,13 +67,8 @@ const BuyPage = () => {
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '100px', margin: '60px' }}>
           {filteredShoeData.slice(0, visibleItems).map((shoe) => (
-            <ShoeCard
-              key={shoe.id}
-              shoeName={shoe.name}
-              price={shoe.price}
-              size={shoe.size}
-              link={shoe.image}
-            />
+            <ShoeCard key={shoe.id} shoe={shoe} />
+          
           ))}
         </div>
         {visibleItems < filteredShoeData.length && (

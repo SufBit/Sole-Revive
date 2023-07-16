@@ -26,6 +26,18 @@ router.get('/sneakers', (req, res) => {
     // Respond with filtered data
     res.json(filteredData);
   }
+  
+});
+
+router.get('/sneakers/:id', (req, res) => {
+  const { id } = req.params;
+  const shoe = sneakerData.find((shoe) => shoe.id === parseInt(id));
+
+  if (shoe) {
+    res.json(shoe);
+  } else {
+    res.status(404).json({ message: 'Shoe not found' });
+  }
 });
 
 module.exports = router;

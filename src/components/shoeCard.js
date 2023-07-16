@@ -4,19 +4,19 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 
-const shoeCard = ({ shoeName, price,size, link }) => {
+const shoeCard = ({ shoe}) => {
   return (
   <Card style={{ width: '18rem' }}>
-    <Card.Img variant="top" src="holder.js/100px180" />
+    <Card.Img variant="top" src= {shoe.image} />
     <Card.Body>
-      <Card.Title>{shoeName}</Card.Title>
+      <Card.Title>{shoe.name}</Card.Title>
       <Card.Text>
-        Price: {price}
+        Price: ${shoe.price}
       </Card.Text>
       <Card.Text>
-          Size: {size}
+          Size: {shoe.size}
       </Card.Text>
-      <Button  as = {Link} to = "/ShoeDisplay" variant="primary" href={link} >View</Button>
+      <Button as={Link} to={`/shoes/${shoe.id}`} variant="primary">View</Button>
     </Card.Body>
   </Card>
   );

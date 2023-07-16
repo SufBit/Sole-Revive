@@ -3,7 +3,7 @@ const sneakerData = [
       id: 1,
       name: 'Nike Air Jordan 1',
       brand: 'Nike',
-      image: 'https://example.com/nike_air_jordan_1.jpg',
+      image: '/images/JordanUser.webp',
       price: 200,
       size: 10,
       stockXprice: 500,
