@@ -16,6 +16,9 @@ const shoeCard = ({ shoe}) => {
       <Card.Text>
           Size: {shoe.size}
       </Card.Text>
+      <Card.Text>
+          Condition: {shoe.condition}
+      </Card.Text>
       <Button as={Link} to={`/shoes/${shoe.id}`} variant="primary">View</Button>
     </Card.Body>
   </Card>

@@ -47,6 +47,7 @@ app.get('/cart', (req, res) => {
     const cartItems = getCartItems();
     res.status(200).json(cartItems);
   });
+  
 
 
   

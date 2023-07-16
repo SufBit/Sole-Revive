@@ -6,7 +6,7 @@ const sneakerData = [
       image: '/images/JordanUser.webp',
       price: 200,
       size: 10,
-      stockXprice: 500,
+      stockXprice: 350,
       condition: 'Excellent'
       // Additional properties
     },
