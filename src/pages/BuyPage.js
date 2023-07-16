@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ShoeCard from '../components/shoeCard';
 import Button from 'react-bootstrap/Button';
 import Filter from '../components/Filter';
+// import { useHistory } from "react-router-dom";
+
 
 const BuyPage = () => {
 

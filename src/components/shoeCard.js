@@ -4,14 +4,14 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
 
-const shoeCard = ({ shoeName, price, size, link }) => {
+const shoeCard = ({ shoeName, price,size, link }) => {
   return (
   <Card style={{ width: '18rem' }}>
     <Card.Img variant="top" src="holder.js/100px180" />
     <Card.Body>
       <Card.Title>{shoeName}</Card.Title>
       <Card.Text>
-        Price: ${price}
+        Price: {price}
       </Card.Text>
       <Card.Text>
           Size: {size}
