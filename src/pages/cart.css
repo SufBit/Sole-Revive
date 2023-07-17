@@ -1,66 +1,80 @@
 .cart-container {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px;
-  }
-  
-  .items-container {
-    width: 70%;
-  }
-  
-  .item-card {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .item-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .item-image {
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-  }
-  
-  .checkout-container {
-    width: 25%;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .checkout-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .checkout-item-title {
-    font-weight: bold;
-  }
-  
-  .checkout-total {
-    margin-top: 10px;
-    text-align: right;
-  }
-  
-  .checkout-button {
-    padding: 10px;
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .checkout-button:hover {
-    background-color: #45a049;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.items-container {
+  width: 70%;
+}
+
+.item-card {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the item details */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the item details vertically */
+  text-align: center; /* Center the item details horizontally */
+}
+
+.item-image {
+  width: auto;
+  height: 100px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.item-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.item-price {
+  font-size: 14px;
+  color: #888;
+}
+
+.checkout-container {
+  width: 25%;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.checkout-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.checkout-item-title {
+  font-weight: bold;
+}
+
+.checkout-total {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.checkout-button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background-color: #45a049;
+}

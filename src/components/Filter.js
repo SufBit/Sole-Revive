@@ -7,13 +7,14 @@ const Filter = ({ handleFilter }) => {
 
   const brands = ['Adidas', 'Nike', 'Puma'];
   const priceRanges = [
+    { label: 'View All', value: '' },
     { label: '$0 - $50', value: '0-50' },
     { label: '$50 - $100', value: '50-100' },
     { label: '$100 - $150', value: '100-150' },
     { label: '$150 - $200', value: '150-200' },
     { label: '$200 - $250', value: '200-250' },
   ];
-  const sizes = ['US 5', 'US 6', 'US 7', 'US 8', 'US 9', 'US 10', 'US 11', 'US 12', 'US 13'];
+  const sizes = [5, 6, 7, 8, 9, 10, 11, 12, 13];
 
   const handleBrandChange = (event) => {
     const brand = event.target.value;
@@ -26,11 +27,12 @@ const Filter = ({ handleFilter }) => {
 
   const handlePriceChange = (event) => {
     const priceRange = event.target.value;
-    setSelectedPriceRange(priceRange);
+    setSelectedPriceRange(selectedPriceRange === priceRange ? '' : priceRange === selectedPriceRange ? '' : priceRange);
   };
+  
 
   const handleSizeChange = (event) => {
-    const size = event.target.value;
+    const size = parseInt(event.target.value);
     if (selectedSizes.includes(size)) {
       setSelectedSizes(selectedSizes.filter((item) => item !== size));
     } else {

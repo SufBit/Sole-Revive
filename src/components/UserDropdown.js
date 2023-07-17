@@ -7,7 +7,7 @@ const UserDropdown = () => {
   return (
     <NavDropdown title={<UserAvatar />} id="basic-nav-dropdown" align="end" className="mr-3">
       <NavDropdown.Item as={Link} to="/bought">Bought</NavDropdown.Item>
-      <NavDropdown.Item as={Link} to="/sold">Sold</NavDropdown.Item>
+      <NavDropdown.Item as={Link} to="./sellData">Sold</NavDropdown.Item>
       <NavDropdown.Item as={Link} to="./WishList">Wishlist</NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item as={Link} to="/logout">Log out</NavDropdown.Item>

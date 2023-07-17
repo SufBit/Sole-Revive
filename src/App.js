@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Home } from './pages/Home';
-import { BuyPage } from './pages/BuyPage';
+import BuyPage  from './pages/BuyPage';
 import Sell from './pages/sell';
 import Cart  from './pages/cart'
 import SignUp from './pages/account/signup'
@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import {WishList}  from './pages/WishList'
 import Reviews from './pages/Reviews'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SellDataPage from './pages/sellData';
+import SellThanks from './pages/sellThankYou'
 
 
 
@@ -19,6 +21,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [cartItems, setCartItems] = useState([]);
+
 
   useEffect(() => {
     // Make a request to check if the user is logged in
@@ -41,14 +45,17 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path='/ShoeDisplay' element={<ShoeDisplay />} />
+          <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
+          {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />
           <Route path='/Review' element={<Reviews />} />
+          <Route path="/sellData" element={<SellDataPage />} />
+          <Route path ="/sellThankYou" element={<SellThanks />} />
           {isLoggedIn ? (
             <>
               
               <Route path='/sell' element={<Sell />} />
-              <Route path='/cart' element={<Cart />} />
+              <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
             </>
           ) : (
             <Route path='/*' element={<Navigate to="/login" replace={isLoggedIn} />} />

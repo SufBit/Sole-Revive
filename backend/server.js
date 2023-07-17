@@ -3,7 +3,9 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const signupRouter = require('./routes/signupRoutes');
 const loginRouter = require('./routes/loginRoutes');
-// const sneakerRoutes = require('./routes/sneakerRoutes');
+const sneakerRoutes = require('./routes/SneakerRoutestemp');
+const { getCartItems } = require('./cartArray');
+const suggestionRoutes = require('./routes/suggestRoutes');
 
 const app = express();
 const cors = require('cors')
@@ -34,8 +36,36 @@ app.use('/post/signup', signupRouter);
 // login route
 app.use('/post/login', loginRouter);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Used for sell, buy and suggestion page
+
 //Sneaker database
-// app.use('/api', sneakerRoutes);
+app.use('/api', sneakerRoutes);
+
+//suggestion routes
+app.use('/api/suggestions', suggestionRoutes);
+
+//cart
+app.get('/cart', (req, res) => {
+    const cartItems = getCartItems();
+    res.status(200).json(cartItems);
+  });
+  
+
+//Ends here
+  
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);

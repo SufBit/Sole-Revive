@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './sell.css'; // Import the CSS file for Sell component
+import { useNavigate } from 'react-router-dom';
+
 
 function Sell() {
   const [shoe, setShoe] = useState('');
@@ -9,9 +11,28 @@ function Sell() {
   const [condition, setCondition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleShoeChange = (event) => {
-    setShoe(event.target.value);
+    const { value } = event.target;
+    setShoe(value);
+
+    // Fetch the suggestions from the backend API
+    fetch(`http://localhost:3001/api/suggestions?suggestion=${value}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setSuggestions(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching suggestions:', error);
+      });
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setShoe(suggestion);
+    setSuggestions([]); // Clear suggestions
   };
 
   const handleSizeChange = (event) => {
@@ -41,15 +62,68 @@ function Sell() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Process the form data (e.g., submit to server)
-    console.log('Submitted shoe:', shoe);
-    console.log('Submitted size:', size);
-    console.log('Submitted offer:', offer);
-    console.log('Submitted image:', image);
-    console.log('Submitted condition:', condition);
-    console.log('Submitted email:', email);
-    console.log('Submitted phone:', phone);
+  
+    try {
+      // Fetch the sneakers data from the backend API
+      fetch('http://localhost:3001/api/sneakers')
+        .then((response) => response.json())
+        .then((sneakersData) => {
+          // Find the sneaker data based on the shoe name
+          const sneaker = sneakersData.find((item) => item.name === shoe);
+  
+          if (sneaker && sneaker.stockXprice) {
+            // Calculate the reduced price based on the condition and stockXprice
+            let reducedPrice = offer;
+            if (condition === 'Used - Excellent') {
+              reducedPrice = sneaker.stockXprice * 0.8; // 80% of stockXprice
+            } else if (condition === 'Used - Good') {
+              reducedPrice = sneaker.stockXprice * 0.7; // 70% of stockXprice
+            } else if (condition === 'Used - Fair') {
+              reducedPrice = sneaker.stockXprice * 0.6; // 60% of stockXprice
+            } else if (condition === 'Used - Poor') {
+              reducedPrice = sneaker.stockXprice * 0.5; // 50% of stockXprice
+            }
+  
+            // Create an object with the sell data
+            const sellData = {
+              name: shoe,
+              price: reducedPrice,
+              condition,
+              image
+            };
+  
+            // Send the sell data to your endpoint
+            fetch('http://localhost:3001/api/sell', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(sellData),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Sell data submitted successfully:', data);
+                // Optionally, you can redirect the user to a different page or perform other actions
+                navigate('/sellThankYou');
+              })
+              .catch((error) => {
+                console.error('Error submitting sell data:', error);
+                // Handle the error
+              });
+          } else {
+            console.error('Error fetching sneaker data or stockXprice not found');
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching sneakers data:', error);
+        });
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+  
+  
+  
 
   return (
     <div className="sell-container">
@@ -57,7 +131,20 @@ function Sell() {
       <form onSubmit={handleSubmit} className="sell-form">
         <label>
           Shoe:
-          <input type="text" value={shoe} onChange={handleShoeChange} />
+          <input type="text" className="form-control" id="shoeInput" value={shoe} onChange={handleShoeChange} />
+          {suggestions.length > 0 && (
+            <ul className="list-group mt-2">
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion}
+                  className="list-group-item suggestion-item"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </label>
         <br />
         <label>
@@ -105,9 +192,11 @@ function Sell() {
           <input type="text" value={phone} onChange={handlePhoneChange} />
         </label>
         <br />
-        <button type="submit" className="sell-button">
-          Sell
-        </button>
+        
+          <button type="submit" className="sell-button">
+            Sell
+          </button>
+
       </form>
     </div>
   );

@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
- function Footer() {
+const Footer = () => {
   return (
-    <footer style={{ backgroundColor: 'purple', color: 'white' }}>
-        <div style={{ padding: '20px', textAlign: 'center' }}>
+    <footer style={{ backgroundColor: 'purple', color: 'white', padding: '20px', textAlign: 'center', marginTop: '200px' }}>
+      <div>
         <p>Contact us: example@example.com</p>
         <p>Phone: 123-456-7890</p>
-        </div>
+      </div>
     </footer>
   );
 };

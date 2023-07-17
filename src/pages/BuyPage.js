@@ -1,19 +1,58 @@
+import React, { useEffect, useState } from 'react';
 import ShoeCard from '../components/shoeCard';
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
 import Filter from '../components/Filter';
+// import { useHistory } from "react-router-dom";
 
-export const BuyPage = () => {
 
-  const handleFilter = (brand, price, size) => {
-    // Update state or perform filtering operations based on the filter values
-  };
+const BuyPage = () => {
+
+  console.log('BuyPage component rendered');
   
-  const [showMore, setShowMore] = useState(false);
+  const [shoeData, setShoeData] = useState([]);
+  const [filteredShoeData, setFilteredShoeData] = useState([]);
+  const [visibleItems, setVisibleItems] = useState(8);
+
+  useEffect(() => {
+    const fetchShoeData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/sneakers');
+        const data = await response.json();
+        setShoeData(data);
+        setFilteredShoeData(data);
+      } catch (error) {
+        console.error('Error fetching shoe data:', error);
+      }
+    };
+  
+    fetchShoeData();
+  }, []);
+
+  const handleFilter = (selectedBrands, selectedPriceRange, selectedSizes) => {
+    // Filter the shoe data based on the selected options
+    let filteredData = shoeData;
+  
+    if (selectedBrands.length > 0) {
+      filteredData = filteredData.filter((shoe) => selectedBrands.includes(shoe.brand));
+    }
+  
+    if (selectedPriceRange) {
+      const [minPrice, maxPrice] = selectedPriceRange.split('-');
+      filteredData = filteredData.filter((shoe) => shoe.price >= Number(minPrice) && shoe.price <= Number(maxPrice));
+    }
+  
+    if (selectedSizes.length > 0) {
+      filteredData = filteredData.filter((shoe) => selectedSizes.includes(shoe.size));
+    }
+  
+    // Update the filtered shoe data
+    setFilteredShoeData(filteredData);
+  };
+
+  
 
   const handleSeeMore = () => {
-    setShowMore(true);
-
+    setVisibleItems((prevVisibleItems) => prevVisibleItems + 4);
   };
 
   return (
@@ -26,59 +65,20 @@ export const BuyPage = () => {
             <Filter handleFilter={handleFilter} />
           </div>
         </div>
-      {/* Render the first set of ShowCard components */}
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-        <ShoeCard shoeName="Shoe 1" price="99.99" link="https://example.com/shoe1" />
-        <ShoeCard shoeName="Shoe 2" price="129.99" link="https://example.com/shoe2" />
-        <ShoeCard shoeName="Shoe 3" price="79.99" link="https://example.com/shoe3" />
+        <div style={{ display: 'flex',justifyContent: 'center', alignItems: 'center',  flexWrap: 'wrap', gap: '100px', margin: '60px' }}>
+          {filteredShoeData.slice(0, visibleItems).map((shoe) => (
+            <ShoeCard key={shoe.id} shoe={shoe} />
+          
+          ))}
+        </div>
+        {visibleItems < filteredShoeData.length && (
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px' }}>
+            <Button variant="primary" size="lg" onClick={handleSeeMore}>See More</Button>
+          </div>
+        )}
       </div>
+    </div>
+  );
+};
 
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-            <ShoeCard shoeName="Shoe 4" price="89.99" link="https://example.com/shoe4" />
-            <ShoeCard shoeName="Shoe 5" price="109.99" link="https://example.com/shoe5" />
-            <ShoeCard shoeName="Shoe 6" price="69.99" link="https://example.com/shoe6" />
-      </div>
-
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-            <ShoeCard shoeName="Shoe 7" price="79.99" link="https://example.com/shoe7" />
-            <ShoeCard shoeName="Shoe 8" price="149.99" link="https://example.com/shoe8" />
-            <ShoeCard shoeName="Shoe 9" price="99.99" link="https://example.com/shoe9" />
-          </div>
-
-      {/* Render additional ShowCard components if showMore is true */}
-      {showMore && (
-        <>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-            <ShoeCard shoeName="Shoe 10" price="89.99" link="https://example.com/shoe4" />
-            <ShoeCard shoeName="Shoe 11" price="109.99" link="https://example.com/shoe5" />
-            <ShoeCard shoeName="Shoe 12" price="69.99" link="https://example.com/shoe6" />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-            <ShoeCard shoeName="Shoe 13" price="79.99" link="https://example.com/shoe7" />
-            <ShoeCard shoeName="Shoe 14" price="149.99" link="https://example.com/shoe8" />
-            <ShoeCard shoeName="Shoe 15" price="99.99" link="https://example.com/shoe9" />
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '100px', margin: '60px' }}>
-            <ShoeCard shoeName="Shoe 16" price="129.99" link="https://example.com/shoe10" />
-            <ShoeCard shoeName="Shoe 17" price="89.99" link="https://example.com/shoe11" />
-            <ShoeCard shoeName="Shoe 18" price="79.99" link="https://example.com/shoe12" />
-          </div>
-        </>
-      )}
-
-      {/* Render the "See More" button */}
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '40px' }}>
-        {!showMore && <Button variant="primary" size="lg" onClick={handleSeeMore}>See More</Button>}
-      </div>
-
-      <div style={{ marginBottom:'40px' }}></div> 
-      {/* Empty div for additional spacing /}
-</div>
-<div style={{ marginTop: '2rem', textAlign: 'center' }}>
-{/ Footer */}
-</div>
-</div>
-)};
-
+export default BuyPage;
