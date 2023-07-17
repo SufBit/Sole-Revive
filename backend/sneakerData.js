@@ -122,6 +122,16 @@ const sneakerData = [
       stockXprice: 180,
       condition: 'Excellent'
     },
+    {
+      id: 13,
+      name: 'Nike Air Zoom Generation',
+      brand: 'Nike',
+      image: 'images/NikeAirZoomGeneration.jpg',
+      price: 110,
+      size: 9,
+      stockXprice: 180,
+      condition: 'Excellent'
+    },
   ];
   
   module.exports = sneakerData;

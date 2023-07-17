@@ -37,7 +37,7 @@ function UncontrolledExample() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/shoe3.jpg"
+          src="images/NikeAirZoomGeneration.jpg"
           alt="Third slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
