@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './sell.css'; // Import the CSS file for Sell component
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 function Sell() {
@@ -12,6 +12,8 @@ function Sell() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+
+  const navigate = useNavigate();
 
   const handleShoeChange = (event) => {
     const { value } = event.target;
@@ -102,6 +104,7 @@ function Sell() {
               .then((data) => {
                 console.log('Sell data submitted successfully:', data);
                 // Optionally, you can redirect the user to a different page or perform other actions
+                navigate('/sellThankYou');
               })
               .catch((error) => {
                 console.error('Error submitting sell data:', error);
@@ -189,11 +192,11 @@ function Sell() {
           <input type="text" value={phone} onChange={handlePhoneChange} />
         </label>
         <br />
-        <Link to="/sellThankYou">
+        
           <button type="submit" className="sell-button">
             Sell
           </button>
-        </Link>
+
       </form>
     </div>
   );
