@@ -5,8 +5,11 @@ const addToCart = (item) => {
 };
 
 const removeFromCart = (itemId) => {
-    cartItems = cartItems.filter((item) => item.id !== itemId);
-  };
+  const index = cartItems.findIndex((item) => item.id === parseInt(itemId));
+  if (index !== -1) {
+    cartItems.splice(index, 1);
+  }
+};
 
 const getCartItems = () => {
   return cartItems;

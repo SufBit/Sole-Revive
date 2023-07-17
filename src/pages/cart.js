@@ -28,6 +28,8 @@ const Cart = () => {
   }, []);
 
   const handleRemoveItem = async (itemId) => {
+
+    console.log('Item ID:', itemId);
     try {
       const response = await fetch(`http://localhost:3001/api/sneakers/${itemId}/cart`, {
         method: 'DELETE',
@@ -35,6 +37,7 @@ const Cart = () => {
       if (response.ok) {
         // Item removed from cart successfully
         console.log('Item removed from cart successfully');
+        // Update the cart items in the state by filtering out the removed item
         setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== itemId));
       } else {
         console.error('Error removing item from cart');
@@ -43,6 +46,7 @@ const Cart = () => {
       console.error('Error removing item from cart:', error);
     }
   };
+  
   
 
   return (

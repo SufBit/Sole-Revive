@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 
-export const ShoeDisplay = ({addToCart}) => {
+export const ShoeDisplay = () => {
 
   const [selectedShoe, setSelectedShoe] = useState(null);
   const { id } = useParams();

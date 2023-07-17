@@ -36,6 +36,21 @@ app.use('/post/signup', signupRouter);
 // login route
 app.use('/post/login', loginRouter);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Used for sell, buy and suggestion page
+
 //Sneaker database
 app.use('/api', sneakerRoutes);
 
@@ -49,7 +64,7 @@ app.get('/cart', (req, res) => {
   });
   
 
-
+//Ends here
   
 
 app.listen(port, () => {

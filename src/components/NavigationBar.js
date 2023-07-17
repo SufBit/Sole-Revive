@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -8,11 +8,47 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import { FaShoppingCart } from 'react-icons/fa'; 
 import './NavigationBar.css';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import UserDropdown from './UserDropdown';
 
 
 const NavigationBar = ({ isLoggedIn }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const navigate = useNavigate();
+
+
+  const fetchSearchSuggestions = (query) => {
+    fetch(`http://localhost:3001/api/suggestions?suggestion=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setSearchSuggestions(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching search suggestions:', error);
+      });
+  };
+
+  useEffect(() => {
+    fetchSearchSuggestions(searchQuery);
+  }, [searchQuery]);
+
+  const handleSuggestionClick = (suggestion) => {
+    setSearchQuery(suggestion);
+    setSearchSuggestions([]);
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    if (searchQuery.trim() === '') {
+      return;
+    }
+
+    // Navigate to ShoeDisplay page with the selected shoe's ID as a parameter
+    navigate(`/shoes/${searchQuery}`);
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
   <Container>
@@ -39,12 +75,34 @@ const NavigationBar = ({ isLoggedIn }) => {
         </NavDropdown>
       </Nav>
       <div className="d-flex align-items-center justify-content-between flex-grow-1"> {/* Use flex-grow-1 to expand the search bar and cart button */}
-        <div className="mr-3"> {/* Add margin to the right for the search bar */}
-          <Form className="d-flex">
-            <FormControl type="text" placeholder="Search" className="mr-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+      <div className="mr-3">
+          <div className="search-bar-container">
+            <Form onSubmit={handleSearch} className="d-flex">
+              <FormControl
+                type="text"
+                placeholder="Search"
+                className="mr-2"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <Button variant="outline-success" type="submit">Search</Button>
+            </Form>
+            {searchSuggestions.length > 0 && (
+              <ul className="list-group mt-2 suggestions-container">
+                {searchSuggestions.map((suggestion) => (
+                  <li
+                    key={suggestion}
+                    className="list-group-item suggestion-item"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
+
         <div className="d-flex align-items-center">
               <div className="mr-2">
                 {!isLoggedIn && (
