@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Home } from './pages/Home';
@@ -19,9 +19,15 @@ import SellThanks from './pages/sellThankYou'
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
+  });
   const [cartItems, setCartItems] = useState([]);
 
+  useEffect(() => {
+    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
   
   return (
     <div className="App">

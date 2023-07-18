@@ -69,6 +69,18 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/checkLoginStatus', (req, res) => {
+    // Check if the user is logged in based on the session or token
+    // Example: Assuming you have a session-based authentication using "req.session.isLoggedIn"
+  
+    if (req.session.isLoggedIn) {
+      res.status(200).json({ isLoggedIn: true });
+    } else {
+      res.status(200).json({ isLoggedIn: false });
+    }
+  });
+  
+
 
 
 module.exports = router;
