@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Home } from './pages/Home';
@@ -19,22 +19,10 @@ import SellThanks from './pages/sellThankYou'
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
-
-  useEffect(() => {
-    // Make a request to check if the user is logged in
-    fetch('/authenticated')
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoggedIn(data.authenticated);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []);
-
+  
   return (
     <div className="App">
       <Router>
@@ -43,7 +31,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
-          <Route path='/login' element={<LogIn />} />
+          <Route path='/login' element={<LogIn setIsLoggedIn={setIsLoggedIn}/>} />
           <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />

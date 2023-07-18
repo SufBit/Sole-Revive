@@ -30,13 +30,11 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// signup route
-app.use('/post/signup', signupRouter);
+// // signup route
+// app.use('/post/signup', signupRouter);
 
-// login route
-app.use('/post/login', loginRouter);
-
-
+// // login route
+// app.use('/post/login', loginRouter);
 
 
 
@@ -48,6 +46,9 @@ app.use('/post/login', loginRouter);
 
 
 
+
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 
 //Used for sell, buy and suggestion page
 
