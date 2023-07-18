@@ -3,14 +3,20 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './UserDropdown.css';
 import { Link } from 'react-router-dom';
 
-const UserDropdown = () => {
+const UserDropdown = ({handleLogout }) => {
+
+  const handleLogoutClick = () => {
+    // Call the handleLogout function passed from the parent component
+    handleLogout();
+  };
+
   return (
     <NavDropdown title={<UserAvatar />} id="basic-nav-dropdown" align="end" className="mr-3">
       <NavDropdown.Item as={Link} to="/bought">Bought</NavDropdown.Item>
       <NavDropdown.Item as={Link} to="./sellData">Sold</NavDropdown.Item>
       <NavDropdown.Item as={Link} to="./WishList">Wishlist</NavDropdown.Item>
       <NavDropdown.Divider />
-      <NavDropdown.Item as={Link} to="/logout">Log out</NavDropdown.Item>
+      <NavDropdown.Item onClick={handleLogoutClick}>Log out</NavDropdown.Item>
     </NavDropdown>
   );
 };

@@ -19,25 +19,43 @@ import SellThanks from './pages/sellThankYou'
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
-    return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
-  });
+  // const [isLoggedIn, setIsLoggedIn] = useState(() => {
+  //   const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+  //   return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
+  // });
+  // const [cartItems, setCartItems] = useState([]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+  // }, [isLoggedIn]);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
-  }, [isLoggedIn]);
+    const authToken = localStorage.getItem('authToken');
+    setIsLoggedIn(authToken);
+  }, []);
+
+  const handleLogin = (authToken) => {
+    setIsLoggedIn(authToken);
+    localStorage.setItem('authToken', authToken);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(null);
+    localStorage.removeItem('authToken');
+  };
   
   return (
     <div className="App">
       <Router>
-        <NavigationBar isLoggedIn={isLoggedIn}/>
+        <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
-          <Route path='/login' element={<LogIn setIsLoggedIn={setIsLoggedIn}/>} />
+          <Route path='/login' element={<LogIn handleLogin={handleLogin}/>} />
           <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />

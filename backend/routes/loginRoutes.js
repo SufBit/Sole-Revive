@@ -46,8 +46,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const usersArray = require('./users');
+// const jwt = require('jsonwebtoken');
 
 const router = express.Router();
+// const secretKey = 'your-secret-key';
 
 router.post('/', async (req, res) => {
   try {
@@ -61,8 +63,10 @@ router.post('/', async (req, res) => {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
+     // Generate and sign a JWT token
+//   const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
     
-    res.status(200).json({ message: 'Login successful!' });
+    res.status(200).json({ message: 'Login successful!'});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });
@@ -78,6 +82,25 @@ router.get('/checkLoginStatus', (req, res) => {
     } else {
       res.status(200).json({ isLoggedIn: false });
     }
+//     const authHeader = req.headers.authorization;
+  
+//   if (authHeader && authHeader.startsWith('Bearer ')) {
+//     const token = authHeader.split(' ')[1];
+
+//     // Verify the token
+//     jwt.verify(token, secretKey, (err, decoded) => {
+//       if (err) {
+//         // Token is invalid or expired
+//         res.status(200).json({ isLoggedIn: false });
+//       } else {
+//         // Token is valid
+//         res.status(200).json({ isLoggedIn: true });
+//       }
+//     });
+//   } else {
+//     // Token is missing
+//     res.status(200).json({ isLoggedIn: false });
+//   }
   });
   
 

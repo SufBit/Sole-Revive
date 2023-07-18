@@ -28,8 +28,11 @@ export default class Login extends Component {
         if (data.message === 'Login successful!') {
           // Display success message
           alert('Successfully logged in!');
+
+          //trial
+          this.setState({ authToken: data.token });
           // Redirect or perform any necessary actions
-          this.props.setIsLoggedIn(true);
+          this.props.handleLogin(true);
         } else {
           // Handle login error, display error message
           alert('Invalid username or password');
