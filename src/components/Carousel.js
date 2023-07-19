@@ -12,7 +12,7 @@ function UncontrolledExample() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/shoe1.jpg"
+          src="images/NikeAirMax1.jpg"
           alt="First slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
@@ -24,7 +24,7 @@ function UncontrolledExample() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/shoe2.jpg"
+          src="images/PumaRS-X3Layers.jpg"
           alt="Second slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
@@ -37,7 +37,7 @@ function UncontrolledExample() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="images/shoe3.jpg"
+          src="images/NikeAirZoomGeneration.jpg"
           alt="Third slide"
           style={{ height: '875px', objectFit: 'cover' }}
         />
