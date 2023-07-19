@@ -14,7 +14,6 @@ import Reviews from './pages/Reviews'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SellDataPage from './pages/sellData';
 import SellThanks from './pages/sellThankYou'
-import { SubscribePage } from './pages/SubscribePage';
 
 
 
@@ -42,7 +41,7 @@ function App() {
       <Router>
         <NavigationBar isLoggedIn={isLoggedIn}/>
         <Routes>
-          <Route path='/' element={<SubscribePage />} />
+          <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn />} />
