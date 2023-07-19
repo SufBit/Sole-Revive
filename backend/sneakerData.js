@@ -5,6 +5,7 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/JordanUser.webp',
       price: 200,
+      subPrice: 190,
       size: 10,
       stockXprice: 350,
       condition: 'Excellent'
@@ -16,6 +17,7 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/yeezyBoost.webp',
       price: 220,
+      subPrice: 205,
       size: 7,
       stockXprice: 350,
       condition: "Excellent"
@@ -28,6 +30,7 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeAirMax270.jpeg',
       price: 80,
+      subPrice: 75,
       size: 9,
       stockXprice: 100,
       condition: 'Excellent'
@@ -38,6 +41,7 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/kisspng-adidas-ultra-boost-2-triple-white-w-adidas-ult-5b9f6a96227c22.5608503215371741661413.jpg',
       price: 80,
+      subPrice: 70,
       size: 8,
       stockXprice: 100,
       condition: 'Excellent'
@@ -48,6 +52,7 @@ const sneakerData = [
       brand: 'Puma',
       image: '/images/PumaSuedeClassic.jpeg',
       price: 65,
+      subPrice: 50,
       size: 10,
       stockXprice: 70,
       condition: 'Excellent'
@@ -58,6 +63,7 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeAirforce1.jpeg',
       price: 75,
+      subPrice: 65,
       size: 9,
       stockXprice: 100,
       condition: 'Excellent'
@@ -68,6 +74,7 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/AdidasStanSmith.jpeg',
       price: 90,
+      subPrice: 80,
       size: 11,
       stockXprice: 100,
       condition: 'Excellent'
@@ -78,6 +85,7 @@ const sneakerData = [
       brand: 'Puma',
       image: '/images/PumaEnzo2.jpeg',
       price: 70,
+      subPrice: 65,
       size: 10,
       stockXprice: 80,
       condition: 'Excellent'
@@ -88,6 +96,7 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeAirMax97.jpeg',
       price: 105,
+      subPrice: 90,
       size: 9,
       stockXprice: 130,
       condition: 'Excellent'
@@ -98,6 +107,7 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/AdidasNMDR1.jpeg',
       price: 80,
+      subPrice: 60,
       size: 8,
       stockXprice: 90,
       condition: 'Excellent'
@@ -108,6 +118,7 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeReactElement55.jpeg',
       price: 90,
+      subPrice: 70,
       size: 10,
       stockXprice: 110,
       condition: 'Excellent'
@@ -118,7 +129,8 @@ const sneakerData = [
       brand: 'Puma',
       image: '/images/PumaClydeCourt.jpeg',
       price: 130,
-      size: 9,
+      subPrice: 125,
+      size: 10,
       stockXprice: 175,
       condition: 'Excellent'
     },
@@ -128,7 +140,8 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeAirZoomGeneration.jpg',
       price: 150,
-      size: 9,
+      subPrice: 135,
+      size: 8,
       stockXprice: 180,
       condition: 'Excellent'
     },
@@ -138,7 +151,8 @@ const sneakerData = [
       brand: 'Nike',
       image: 'images/NikeAirMax1.jpg',
       price: 150,
-      size: 9,
+      subPrice: 140,
+      size: 8,
       stockXprice: 180,
       condition: 'Excellent'
     },
@@ -148,6 +162,7 @@ const sneakerData = [
       brand: 'Puma',
       image: 'images/PumaRS-X3Layers.jpg',
       price: 100,
+      subPrice: 95,
       size: 9,
       stockXprice: 120,
       condition: 'Excellent'
@@ -158,7 +173,8 @@ const sneakerData = [
       brand: 'Nike',
       image: '/images/NikeKyrie7s.jpeg',
       price: 150,
-      size: 9,
+      subPrice: 140,
+      size: 6,
       stockXprice: 200,
       condition: 'Excellent'
     },
@@ -168,7 +184,8 @@ const sneakerData = [
       brand: 'Puma',
       image: '/images/PumaSlipstream.jpeg',
       price: 85,
-      size: 9,
+      subPrice: 75,
+      size: 12,
       stockXprice: 110,
       condition: 'Excellent'
     },
@@ -178,7 +195,8 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/AdidasContinental80.jpeg',
       price: 65,
-      size: 9,
+      subPrice: 60,
+      size: 11,
       stockXprice: 80,
       condition: 'Excellent'
     },
@@ -188,6 +206,7 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/AdidasForum.jpeg',
       price: 130,
+      subPrice: 110,
       size: 9,
       stockXprice: 140,
       condition: 'Excellent'
@@ -198,7 +217,8 @@ const sneakerData = [
       brand: 'Adidas',
       image: '/images/AdidasSuperstar.jpeg',
       price: 75,
-      size: 9,
+      subPrice: 70,
+      size: 7,
       stockXprice: 90,
       condition: 'Excellent'
     },
