@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const sneakerData = require('../sneakerData');
-const { addToCart, removeFromCart } = require('../cartArray');
-const itemController = require('../sellArray');
+const sneakerData = require('../database/sneakerData');
+const { addToCart, removeFromCart } = require('../database/cartArray');
+const itemController = require('../database/sellArray');
 
 router.get('/sneakers', (req, res) => {
   const { brand, price, size } = req.query;
