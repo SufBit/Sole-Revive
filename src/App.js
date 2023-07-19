@@ -35,7 +35,8 @@ function App() {
     const storedAuthToken = localStorage.getItem('authToken');
     return storedAuthToken ? true : false;
   });
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(false); 
   
 
   useEffect(() => {
@@ -67,15 +68,15 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
           <Route path='/login' element={<LogIn handleLogin={handleLogin} handleLogout={handleLogout}/>} />
-          <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
+          <Route path="/shoes/:id/:isSubscribed" element={<ShoeDisplay setIsSubscribed={isSubscribed}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path="/sellData" element={<SellDataPage authToken={isLoggedIn}/>} />
-          <Route path='/BuyPage' element={<BuyPage />} />
+          <Route path='/BuyPage' element={<BuyPage setIsSubscribed={setIsSubscribed} />} />
           <Route path='SubscribePage' element={<SubscribePage authToken={isLoggedIn ? localStorage.getItem('authToken') : ''} />} />
           <Route path='/Review' element={<Reviews />} />
           <Route path="/sellData" element={<SellDataPage />} />
           <Route path ="/sellThankYou" element={<SellThanks />} />
-          <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
+          <Route path='/cart' element={<Cart cartItems={cartItems} isSubscribed={setIsSubscribed}/>} />
           {isLoggedIn ? (
             <>
               

@@ -12,6 +12,7 @@ const BuyPage = () => {
   const [shoeData, setShoeData] = useState([]);
   const [filteredShoeData, setFilteredShoeData] = useState([]);
   const [visibleItems, setVisibleItems] = useState(8);
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   useEffect(() => {
     const fetchShoeData = async () => {
@@ -49,6 +50,33 @@ const BuyPage = () => {
     setFilteredShoeData(filteredData);
   };
 
+  useEffect(() => {
+    // Fetch subscription status here based on the logged-in user
+    fetch('http://localhost:3001/subscribers', {
+      headers: {
+        method: 'GET',
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      },
+    })
+      .then((response) => {
+      console.log('Received Token:', localStorage.getItem('authToken')); // Log the received token
+      return response.json()
+    })
+      .then((data) => {
+        console.log('Subscription Data:', data); // Log the subscription data
+        console.log('Auth Token:', localStorage.getItem('authToken')); // Log the value of authToken
+        // Check if the logged-in user is subscribed based on the response data
+        const currentUserSubscribed = data.some(
+          (subscription) => subscription.email === localStorage.getItem('email')
+        );
+        
+        console.log('currentUserSubscribed:', currentUserSubscribed); 
+        setIsSubscribed(currentUserSubscribed);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
   
 
   const handleSeeMore = () => {
@@ -67,7 +95,7 @@ const BuyPage = () => {
         </div>
         <div style={{ display: 'flex',justifyContent: 'center', alignItems: 'center',  flexWrap: 'wrap', gap: '100px', margin: '60px' }}>
           {filteredShoeData.slice(0, visibleItems).map((shoe) => (
-            <ShoeCard key={shoe.id} shoe={shoe} />
+            <ShoeCard key={shoe.id} shoe={shoe} isSubscribed={isSubscribed}/>
           
           ))}
         </div>

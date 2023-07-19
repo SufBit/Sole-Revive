@@ -5,10 +5,12 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 
+
 export const ShoeDisplay = () => {
 
   const [selectedShoe, setSelectedShoe] = useState(null);
-  const { id } = useParams();
+  const { id, isSubscribed } = useParams();
+  console.log(isSubscribed);
 
   useEffect(() => {
     const fetchShoeDetails = async () => {
@@ -64,7 +66,17 @@ return (
     {selectedShoe ? (
       <div>
         <h2><strong>{selectedShoe.name}</strong></h2>
-        <h3><p>Price: ${selectedShoe.price}</p></h3>
+        <h3><p>
+          {isSubscribed ? (
+            <>
+              <h3><p>Subscription Price: ${selectedShoe.subPrice}</p></h3>
+            </>
+          ) : (
+            <>
+              <h3><p>Price: ${selectedShoe.price}</p></h3>
+            </>
+          )}
+          </p></h3>
         <h3><p>Size: {selectedShoe.size}</p></h3>
         {/* Additional shoe details */}
       </div>

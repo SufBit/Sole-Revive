@@ -158,6 +158,9 @@ export default class Login extends Component {
           // Display success message
           alert('Successfully logged in!');
 
+
+          //setEmail
+          localStorage.setItem('email', email);
           // Set the authToken in local storage
           localStorage.setItem('authToken', data.token);
           console.log('Stored Token:', data.token);
