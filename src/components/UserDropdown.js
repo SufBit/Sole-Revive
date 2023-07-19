@@ -15,6 +15,7 @@ const UserDropdown = ({handleLogout }) => {
       <NavDropdown.Item as={Link} to="/bought">Bought</NavDropdown.Item>
       <NavDropdown.Item as={Link} to="./sellData">Sold</NavDropdown.Item>
       <NavDropdown.Item as={Link} to="./WishList">Wishlist</NavDropdown.Item>
+      <NavDropdown.Item as={Link} to="./SubscribePage">Subscribe</NavDropdown.Item>
       <NavDropdown.Divider />
       <NavDropdown.Item onClick={handleLogoutClick}>Log out</NavDropdown.Item>
     </NavDropdown>

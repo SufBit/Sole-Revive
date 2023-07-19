@@ -14,6 +14,7 @@ import Reviews from './pages/Reviews'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SellDataPage from './pages/sellData';
 import SellThanks from './pages/sellThankYou'
+import {SubscribePage} from './pages/SubscribePage'
 
 
 
@@ -30,21 +31,31 @@ function App() {
   //   localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
   // }, [isLoggedIn]);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const storedAuthToken = localStorage.getItem('authToken');
+    return storedAuthToken ? true : false;
+  });
+  const [cartItems] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(false); 
+  
 
   useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    setIsLoggedIn(authToken);
+    const storedAuthToken = localStorage.getItem('authToken');
+    setIsLoggedIn(storedAuthToken ? true : false);
   }, []);
 
   const handleLogin = (authToken) => {
+    console.log('Received Token:', authToken);
     setIsLoggedIn(authToken);
-    localStorage.setItem('authToken', authToken);
+    if (authToken) {
+      localStorage.setItem('authToken', authToken);
+    } else {
+      localStorage.removeItem('authToken');
+    }
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(null);
+    setIsLoggedIn(false);
     localStorage.removeItem('authToken');
   };
   
@@ -56,16 +67,16 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
-          <Route path='/login' element={<LogIn handleLogin={handleLogin}/>} />
-          <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
+          <Route path='/login' element={<LogIn handleLogin={handleLogin} handleLogout={handleLogout}/>} />
+          <Route path="/shoes/:id/:isSubscribed" element={<ShoeDisplay setIsSubscribed={isSubscribed}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path="/sellData" element={<SellDataPage authToken={isLoggedIn}/>} />
-          <Route path='/BuyPage' element={<BuyPage />} />
-          
+          <Route path='/BuyPage' element={<BuyPage setIsSubscribed={setIsSubscribed} />} />
+          <Route path='SubscribePage' element={<SubscribePage authToken={isLoggedIn ? localStorage.getItem('authToken') : ''} />} />
           <Route path='/Review' element={<Reviews />} />
           <Route path="/sellData" element={<SellDataPage />} />
           <Route path ="/sellThankYou" element={<SellThanks />} />
-          <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
+          <Route path='/cart' element={<Cart cartItems={cartItems} isSubscribed={setIsSubscribed}/>} />
           {isLoggedIn ? (
             <>
               

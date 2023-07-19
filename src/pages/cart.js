@@ -2,13 +2,13 @@ import React from 'react';
 import './cart.css';
 import { useEffect, useState } from 'react';
 
-const Cart = () => {
+const Cart = ({ isSubscribed }) => {
   
   const [cartItems, setCartItems] = useState([]);
   const calculateTotal = () => {
     let total = 0;
     cartItems.forEach(item => {
-      total += item.price;
+      total += isSubscribed ? item.subPrice : item.price;
     });
     return total;
   };
@@ -57,7 +57,7 @@ const Cart = () => {
             <div className="item-details">
               <img src={item.image} alt={item.name} className="item-image" />
               <h3 className="item-title">{item.name}</h3>
-              <p className="item-price">${item.price}</p>
+              <p className="item-price">{isSubscribed ? `$${item.subPrice}` : `$${item.price}`}</p>
               <button className="remove-button" onClick={() => handleRemoveItem(item.id)}>
                 Remove
               </button>
@@ -70,7 +70,7 @@ const Cart = () => {
         {cartItems.map(item => (
           <div className="checkout-item" key={item.id}>
             <p className="checkout-item-title">{item.name}</p>
-            <p className="checkout-item-price">${item.price}</p>
+            <p className="checkout-item-price">{isSubscribed ? `$${item.subPrice}` : `$${item.price}`}</p>
           </div>
         ))}
         <hr />
