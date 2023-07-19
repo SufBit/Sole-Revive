@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import { Home } from './pages/Home';
@@ -20,42 +20,58 @@ import SellThanks from './pages/sellThankYou'
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  // const [isLoggedIn, setIsLoggedIn] = useState(() => {
+  //   const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+  //   return storedIsLoggedIn ? JSON.parse(storedIsLoggedIn) : false;
+  // });
+  // const [cartItems, setCartItems] = useState([]);
+
+  // useEffect(() => {
+  //   localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+  // }, [isLoggedIn]);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [cartItems, setCartItems] = useState([]);
 
-
   useEffect(() => {
-    // Make a request to check if the user is logged in
-    fetch('/authenticated')
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoggedIn(data.authenticated);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    const authToken = localStorage.getItem('authToken');
+    setIsLoggedIn(authToken);
   }, []);
 
+  const handleLogin = (authToken) => {
+    setIsLoggedIn(authToken);
+    localStorage.setItem('authToken', authToken);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(null);
+    localStorage.removeItem('authToken');
+  };
+  
   return (
     <div className="App">
       <Router>
-        <NavigationBar isLoggedIn={isLoggedIn}/>
+        <NavigationBar isLoggedIn={isLoggedIn} handleLogout={handleLogout}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/WishList' element={<WishList />} />
-          <Route path='/login' element={<LogIn />} />
+          <Route path='/login' element={<LogIn handleLogin={handleLogin}/>} />
           <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
+          <Route path="/sellData" element={<SellDataPage authToken={isLoggedIn}/>} />
           <Route path='/BuyPage' element={<BuyPage />} />
+          
           <Route path='/Review' element={<Reviews />} />
           <Route path="/sellData" element={<SellDataPage />} />
           <Route path ="/sellThankYou" element={<SellThanks />} />
+          <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
           {isLoggedIn ? (
             <>
               
               <Route path='/sell' element={<Sell />} />
-              <Route path='/cart' element={<Cart cartItems={cartItems}/>} />
+              
+              
             </>
           ) : (
             <Route path='/*' element={<Navigate to="/login" replace={isLoggedIn} />} />

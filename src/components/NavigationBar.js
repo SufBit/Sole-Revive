@@ -12,7 +12,7 @@ import { Link, useNavigate } from "react-router-dom"
 import UserDropdown from './UserDropdown';
 
 
-const NavigationBar = ({ isLoggedIn }) => {
+const NavigationBar = ({ isLoggedIn, handleLogout }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ const NavigationBar = ({ isLoggedIn }) => {
                   </Link>
                 )}
               </div>
-              {isLoggedIn && <UserDropdown />}
+              {isLoggedIn && <UserDropdown handleLogout={handleLogout}/>}
               <Link to="/cart" className="btn btn-link cart-button">
                 <FaShoppingCart />
               </Link>
