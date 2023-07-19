@@ -2,11 +2,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 const CheckoutForm = () => {
   const [creditCardNumber, setCreditCardNumber] = useState('');
   const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
+  const [streetAddress, setStreetAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const history = useNavigate();
 
   const handleCreditCardChange = (e) => {
@@ -17,8 +18,16 @@ const CheckoutForm = () => {
     setName(e.target.value);
   };
 
-  const handleAddressChange = (e) => {
-    setAddress(e.target.value);
+  const handleStreetAddressChange = (e) => {
+    setStreetAddress(e.target.value);
+  };
+
+  const handleCityChange = (e) => {
+    setCity(e.target.value);
+  };
+
+  const handleZipCodeChange = (e) => {
+    setZipCode(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -27,9 +36,11 @@ const CheckoutForm = () => {
     const checkoutData = {
       creditCardNumber,
       name,
-      address,
+      streetAddress,
+      city,
+      zipCode,
     };
-    // Navigate to the second page
+    // Navigate to the order confirmation page once submitted, user info gets passed throguh useNavigate
     history('/next-page', { checkoutData });
   };
 
@@ -39,28 +50,42 @@ const CheckoutForm = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '50vh',
+        height: '75vh',
       }}
     >
       <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="creditCardNumber">Credit Card Number:</label>
-        <input
-          type="text"
-          id="creditCardNumber"
-          value={creditCardNumber}
-          onChange={handleCreditCardChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={handleNameChange} required />
-      </div>
-      <div>
-        <label htmlFor="address">Address:</label>
-        <input type="text" id="address" value={address} onChange={handleAddressChange} required />
-      </div>
+        <div>
+          <label htmlFor="creditCardNumber">Credit Card Number:</label>
+          <input
+            type="text"
+            id="creditCardNumber"
+            value={creditCardNumber}
+            onChange={handleCreditCardChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" value={name} onChange={handleNameChange} required />
+        </div>
+        <div>
+          <label htmlFor="streetAddress">Street Address:</label>
+          <input
+            type="text"
+            id="streetAddress"
+            value={streetAddress}
+            onChange={handleStreetAddressChange}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="city">City:</label>
+          <input type="text" id="city" value={city} onChange={handleCityChange} required />
+        </div>
+        <div>
+          <label htmlFor="zipCode">Zip Code:</label>
+          <input type="text" id="zipCode" value={zipCode} onChange={handleZipCodeChange} required />
+        </div>
         <button type="submit">Submit</button>
       </form>
     </div>
