@@ -37,7 +37,7 @@ const ReviewForm = ({ onAddReview }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style= {{border: '1px'}}>
       <div>
         <label htmlFor="name">Name:</label>
         <input

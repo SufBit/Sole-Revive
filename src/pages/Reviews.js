@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReviewForm from '../components/ReviewForm';
-
+import './Reviews.css';
 const ReviewPage = () => {
   const [reviews, setReviews] = useState([{
     name: 'John Doe',
@@ -23,14 +23,14 @@ const ReviewPage = () => {
   };
 
   return (
-    <div>
+    <div className='review-page'>
       <h1>Customer Reviews</h1>
       {reviews.length === 0 ? (
         <p>No reviews yet.</p>
       ) : (
-        <ul>
+        <ul className='review-list'>
           {reviews.map((review, index) => (
-            <li key={index}>
+            <li key={index} className='review-item' style = {{border: '1px'}}>
               <h3>{review.name}</h3>
               <p>Rating: {review.rating}</p>
               <p>{review.comment}</p>

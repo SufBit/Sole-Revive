@@ -10,6 +10,7 @@ import LogIn from './pages/account/login'
 import {ShoeDisplay} from './pages/ShoeDisplay'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import {WishList}  from './pages/WishList'
+import Reviews from './pages/Reviews'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SellDataPage from './pages/sellData';
 import SellThanks from './pages/sellThankYou'
@@ -59,6 +60,7 @@ function App() {
           <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
           <Route path='/BuyPage' element={<BuyPage />} />
+          <Route path='/Review' element={<Reviews />} />
           <Route path="/sellData" element={<SellDataPage />} />
           <Route path ="/sellThankYou" element={<SellThanks />} />
           {isLoggedIn ? (
