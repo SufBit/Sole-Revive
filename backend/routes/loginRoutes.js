@@ -46,10 +46,10 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const usersArray = require('../database/users');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
-// const secretKey = 'your-secret-key';
+const secretKey = 'your-secret-key';
 
 router.post('/', async (req, res) => {
   try {
@@ -66,8 +66,11 @@ router.post('/', async (req, res) => {
 
      // Generate and sign a JWT token
 //   const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
+// Generate a JWT token
+    const token = jwt.sign(user, secretKey);
+
     
-    res.status(200).json({ message: 'Login successful!'});
+    res.status(200).json({ message: 'Login successful!', token});
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server error' });

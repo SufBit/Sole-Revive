@@ -6,6 +6,7 @@ const loginRouter = require('./routes/loginRoutes');
 const sneakerRoutes = require('./routes/SneakerRoutestemp');
 const { getCartItems } = require('./database/cartArray');
 const suggestionRoutes = require('./routes/suggestRoutes');
+const subscriptionRouter = require('./routes/subRoutes');
 
 const app = express();
 const cors = require('cors')
@@ -50,6 +51,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
+app.use('/subscribers', subscriptionRouter);
 
 //Used for sell, buy and suggestion page
 
