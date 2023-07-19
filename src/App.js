@@ -58,6 +58,7 @@ function App() {
           <Route path='/login' element={<LogIn handleLogin={handleLogin}/>} />
           <Route path="/shoes/:id" element={<ShoeDisplay setCartItems={setCartItems}/>} />
           {/* <Route path='/ShoeDisplay' element={<ShoeDisplay />} /> */}
+          <Route path="/sellData" element={<SellDataPage authToken={isLoggedIn}/>} />
           <Route path='/BuyPage' element={<BuyPage />} />
           
           <Route path ="/sellThankYou" element={<SellThanks />} />
@@ -66,7 +67,7 @@ function App() {
             <>
               
               <Route path='/sell' element={<Sell />} />
-              <Route path="/sellData" element={<SellDataPage authToken={isLoggedIn}/>} />
+              
               
             </>
           ) : (
