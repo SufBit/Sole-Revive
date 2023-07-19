@@ -1,0 +1,11 @@
+.shoe-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add the desired space between the shoe cards */
+  }
+
+  .top-sellers-heading {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px; /* Add margin-top for spacing */
+  }
