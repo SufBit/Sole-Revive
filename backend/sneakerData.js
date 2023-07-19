@@ -36,7 +36,7 @@ const sneakerData = [
       id: 4,
       name: 'Adidas Ultra Boost',
       brand: 'Adidas',
-      image: '/AdidasUltraBoost.jpeg',
+      image: '/images/kisspng-adidas-ultra-boost-2-triple-white-w-adidas-ult-5b9f6a96227c22.5608503215371741661413.jpg',
       price: 80,
       size: 8,
       stockXprice: 100,
