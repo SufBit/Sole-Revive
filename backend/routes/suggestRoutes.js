@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sneakerData = require('../sneakerData');
+const sneakerData = require('../database/sneakerData');
 
 router.get('/', (req, res) => {
   const { suggestion } = req.query;

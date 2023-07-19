@@ -30,7 +30,7 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const usersArray = require('./users');
+const usersArray = require('../database/users');
 
 const router = express.Router();
 

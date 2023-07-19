@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const signupRouter = require('./routes/signupRoutes');
 const loginRouter = require('./routes/loginRoutes');
 const sneakerRoutes = require('./routes/SneakerRoutestemp');
-const { getCartItems } = require('./cartArray');
+const { getCartItems } = require('./database/cartArray');
 const suggestionRoutes = require('./routes/suggestRoutes');
 
 const app = express();
