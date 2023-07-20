@@ -1,3 +1,29 @@
+#Running Project
+
+##Start Server
+cd backend
+npm start
+
+##Start WebApp
+npm start
+
+##Possible errors when running
+sh: react-scripts: command not found
+
+##Solutions
+
+#Install react-scripts using the following command:
+npm install react-scripts
+
+#Install the dependencies using the following command:
+npm install
+
+##Might have to 
+rm -rf node_modules
+rm -rf package-lock.json
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
