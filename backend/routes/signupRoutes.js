@@ -30,7 +30,7 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const usersArray = require('../database/users');
+const {addUser, getUser} = require('../database/users');
 
 const router = express.Router();
 
@@ -39,19 +39,15 @@ router.post('/', async (req, res) => {
     const { username, password } = req.body;
 
     // Check if the username is already taken
-    const existingUser = usersArray.find(user => user.username === username);
+    const existingUser = getUser(username);
     if (existingUser) {
       return res.status(409).json({ message: 'Username is already taken' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = {
-      username,
-      password: hashedPassword,
-    };
+    addUser(username, hashedPassword);
 
-    usersArray.push(newUser);
 
     res.status(200).json({ message: 'Signup successful!' });
   } catch (error) {

@@ -45,7 +45,7 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const usersArray = require('../database/users');
+const {getUser} = require('../database/users');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
@@ -56,8 +56,8 @@ router.post('/', async (req, res) => {
     const { username, password } = req.body;
 
     // Find the user in the usersArray
-    const user = usersArray.find(user => user.username === username);
-
+    
+    const user = getUser(username);
     // If user not found or password does not match, return error
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(401).json({ message: 'Invalid username or password' });
@@ -69,7 +69,7 @@ router.post('/', async (req, res) => {
 // Generate a JWT token
     const token = jwt.sign(user, secretKey);
 
-    
+    req.session.isLoggedIn = true;
     res.status(200).json({ message: 'Login successful!', token});
   } catch (error) {
     console.error(error);

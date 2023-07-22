@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addSubscription, getAllSubscriptions } = require('../database/subscriberData');
+const { updateUserSubscription, getAllSubscriptions } = require('../database/users');
 const jwt = require('jsonwebtoken');
 
 const secretKey = 'your-secret-key'; 
@@ -27,18 +27,25 @@ const authenticateToken = (req, res, next) => {
 
 // Subscribers endpoint
 router.post('/', authenticateToken, (req, res) => {
-  const subscription = req.body;
+  const userId = req.user.username; // Get the current user's username
+  const { action } = req.body;
 
-  // Add the subscription to the subscriptions array
-  addSubscription(subscription);
-
-  res.sendStatus(200);
+  if (action === 'subscribe') {
+    updateUserSubscription(userId, true); // Subscribe the user
+    res.status(200).json({ message: 'Subscribed successfully!' });
+  } else if (action === 'unsubscribe') {
+    updateUserSubscription(userId, false); // Unsubscribe the user
+    res.status(200).json({ message: 'Unsubscribed successfully!' });
+  } else {
+    res.status(400).json({ message: 'Invalid action' });
+  }
 });
 
 // Get all subscribers endpoint
 router.get('/', authenticateToken, (req, res) => {
-  // Retrieve all subscriptions from the subscriptions array
-  const subscriptions = getAllSubscriptions();
+  // Retrieve all subscriptions from the users map for the current user
+  const userId = req.user.username; // Get the current user's username
+  const subscriptions = getAllSubscriptions(userId);
 
   res.json(subscriptions);
 });

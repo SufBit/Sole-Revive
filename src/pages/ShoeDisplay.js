@@ -66,17 +66,19 @@ return (
     {selectedShoe ? (
       <div>
         <h2><strong>{selectedShoe.name}</strong></h2>
-        <h3><p>
-          {isSubscribed ? (
-            <>
-              <h3><p>Subscription Price: ${selectedShoe.subPrice}</p></h3>
-            </>
-          ) : (
-            <>
-              <h3><p>Price: ${selectedShoe.price}</p></h3>
-            </>
-          )}
-          </p></h3>
+        <h3>
+          <p>
+            {isSubscribed === 'true' ? (
+              <>
+                <span>Subscription Price: ${selectedShoe.subPrice}</span>
+              </>
+            ) : (
+              <>
+                <span>Price: ${selectedShoe.price}</span>
+              </>
+            )}
+          </p>
+        </h3>
         <h3><p>Size: {selectedShoe.size}</p></h3>
         {/* Additional shoe details */}
       </div>
