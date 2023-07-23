@@ -91,12 +91,14 @@ function Sell() {
               condition,
               image
             };
-  
+            
+            const authToken = localStorage.getItem('authToken');
             // Send the sell data to your endpoint
             fetch('http://localhost:3001/api/sell', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${authToken}`,
               },
               body: JSON.stringify(sellData),
             })

@@ -8,7 +8,11 @@ function SellDataPage() {
 
   useEffect(() => {
     // Fetch the sell data from the backend API
-    fetch('http://localhost:3001/api/sell/items')
+    fetch('http://localhost:3001/api/sell/items', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('authToken')}`, // Add the authentication token to the request headers
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setSellData(data);
