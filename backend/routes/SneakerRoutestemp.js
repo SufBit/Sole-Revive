@@ -3,9 +3,33 @@ const router = express.Router();
 const sneakerData = require('../database/sneakerData');
 const { addToCart, removeFromCart } = require('../database/cartArray');
 const itemController = require('../database/sellArray');
+const secretKey = 'your-secret-key'; 
+const jwt = require('jsonwebtoken');
+
+
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, secretKey, (err, user) => {
+    if (err) {
+      return res.sendStatus(403);
+    }
+
+    console.log('Decoded user from token:', user);
+    req.user = user;
+    console.log(req.user);
+    next();
+  });
+};
 
 router.get('/sneakers', (req, res) => {
   const { brand, price, size } = req.query;
+  
 
   let filteredData = sneakerData;
 
@@ -66,19 +90,31 @@ router.delete('/sneakers/:id/cart', (req, res) => {
   res.status(200).json({ message: 'Item removed from cart successfully' });
 });
 
-router.post('/sell', (req, res) => {
+// r
+router.post('/sell',authenticateToken, (req, res) => {
   const { name, price, condition, image } = req.body;
+  const username = req.user.username; 
 
   // Add the item using the addItem function from itemController
-  itemController.addItem(name, price, condition, image);
+  itemController.addItem( username, name, price, condition, image);
 
   res.json({ message: 'Item added successfully' });
 });
 
+
 // Example route that fetches all items
-router.get('/sell/items', (req, res) => {
-  // Get all items using the getAllItems function from itemController
-  const items = itemController.getAllItems();
+// router.get('/sell/items', (req, res) => {
+//   // Get all items using the getAllItems function from itemController
+//   const items = itemController.getAllItems();
+
+//   res.json(items);
+// });
+
+router.get('/sell/items',authenticateToken, (req, res) => {
+  const username = req.user.username;
+
+  // Get all items for the specified user using the getAllItemsForUser function from itemController
+  const items = itemController.getAllItemsForUser(username);
 
   res.json(items);
 });
