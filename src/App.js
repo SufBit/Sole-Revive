@@ -76,7 +76,7 @@ function App() {
           <Route path='/Review' element={<Reviews />} />
           <Route path="/sellData" element={<SellDataPage />} />
           <Route path ="/sellThankYou" element={<SellThanks />} />
-          <Route path='/cart' element={<Cart cartItems={cartItems} isSubscribed={setIsSubscribed}/>} />
+          <Route path='/cart' element={<Cart cartItems={cartItems} isSubscribed={isSubscribed}/>} />
           {isLoggedIn ? (
             <>
               
